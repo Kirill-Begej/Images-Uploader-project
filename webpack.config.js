@@ -37,6 +37,14 @@ module.exports = (env) => {
     ],
   };
 
+  const fontsLoader = {
+    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: 'fonts/[name][ext]',
+    },
+  };
+
   return {
     mode: env.mode ?? 'development',
     entry: path.resolve(__dirname, 'src', 'js', 'pages', 'index.js'),
@@ -69,6 +77,7 @@ module.exports = (env) => {
       rules: [
         isProd && htmlLoader,
         cssLoader,
+        fontsLoader,
       ],
     },
   };
