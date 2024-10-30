@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
@@ -54,6 +56,10 @@ module.exports = (env) => {
       extensions: ['.js'],
     },
     plugins: [
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, 'src', 'index.html'),
+      }),
+      new webpack.HotModuleReplacementPlugin(),
       isProd && new MiniCssExtractPlugin({
         filename: 'css/[name].[contenthash:8].css',
         chunkFilename: 'css/[name].[contenthash:8].css',
