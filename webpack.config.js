@@ -45,6 +45,19 @@ module.exports = (env) => {
     },
   };
 
+  const babelLoader = {
+    test: /\.(?:js|mjs|cjs)$/i,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: [
+          ['@babel/preset-env', { targets: 'defaults' }],
+        ],
+      },
+    },
+  };
+
   return {
     mode: env.mode ?? 'development',
     entry: path.resolve(__dirname, 'src', 'js', 'pages', 'index.js'),
@@ -78,6 +91,7 @@ module.exports = (env) => {
         isProd && htmlLoader,
         cssLoader,
         fontsLoader,
+        babelLoader,
       ],
     },
   };
