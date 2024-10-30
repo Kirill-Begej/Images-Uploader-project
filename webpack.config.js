@@ -1,8 +1,39 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
   const isDev = env.mode === 'development';
   const isProd = env.mode === 'production';
+
+  const htmlLoader = {
+    test: /\.html$/i,
+    loader: 'html-loader',
+  };
+
+  const postCssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      postcssOptions: {
+        plugins: [
+          [
+            'postcss-preset-env',
+            {
+              browsers: 'last 4 versions',
+            },
+          ],
+        ],
+      },
+    },
+  };
+
+  const cssLoader = {
+    test: /\.css$/i,
+    use: [
+      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+      'css-loader',
+      isProd && postCssLoader,
+    ],
+  };
 
   return {
     mode: env.mode ?? 'development',
@@ -22,7 +53,17 @@ module.exports = (env) => {
     resolve: {
       extensions: ['.js'],
     },
-    plugins: [],
-    module: {},
+    plugins: [
+      isProd && new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        chunkFilename: 'css/[name].[contenthash:8].css',
+      }),
+    ].filter(Boolean),
+    module: {
+      rules: [
+        isProd && htmlLoader,
+        cssLoader,
+      ],
+    },
   };
 };
