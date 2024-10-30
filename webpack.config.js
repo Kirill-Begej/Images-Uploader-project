@@ -47,6 +47,14 @@ module.exports = (env) => {
     },
   };
 
+  const svgLoader = {
+    test: /\.svg$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: 'images/[name].[contenthash:8][ext]',
+    },
+  };
+
   const babelLoader = {
     test: /\.(?:js|mjs|cjs)$/i,
     exclude: /node_modules/,
@@ -103,6 +111,7 @@ module.exports = (env) => {
         isProd && htmlLoader,
         cssLoader,
         fontsLoader,
+        svgLoader,
         babelLoader,
       ],
     },
