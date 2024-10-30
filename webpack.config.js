@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+// const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = (env) => {
   const isDev = env.mode === 'development';
@@ -76,6 +76,10 @@ module.exports = (env) => {
     },
     devtool: isDev && 'inline-source-map',
     resolve: {
+      alias: {
+        css: path.resolve(__dirname, 'src', 'css'),
+        js: path.resolve(__dirname, 'src', 'js'),
+      },
       extensions: ['.js'],
     },
     plugins: [
@@ -88,11 +92,11 @@ module.exports = (env) => {
         chunkFilename: 'css/[name].[contenthash:8].css',
       }),
       isDev && new ESLintPlugin(),
-      new FaviconsWebpackPlugin({
-        logo: path.resolve(__dirname, 'src', 'assets', 'images', 'favicon', 'favicon.png'),
-        outputPath: path.resolve(__dirname, 'build', 'images', 'favicon'),
-        prefix: 'images/favicon/',
-      }),
+      // new FaviconsWebpackPlugin({
+      //   logo: path.resolve(__dirname, 'src', 'assets', 'images', 'favicon', 'favicon.png'),
+      //   outputPath: path.resolve(__dirname, 'build', 'images', 'favicon'),
+      //   prefix: 'images/favicon/',
+      // }),
     ].filter(Boolean),
     module: {
       rules: [

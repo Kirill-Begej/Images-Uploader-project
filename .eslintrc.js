@@ -8,8 +8,11 @@ module.exports = {
       presets: ['@babel/preset-env'],
     },
   },
-  extends: ['airbnb-base'],
+  extends: [
+    'plugin:import/recommended',
+    'airbnb-base',
+  ],
   rules: {
-
+    'import/no-unresolved': 0,
   },
 };
