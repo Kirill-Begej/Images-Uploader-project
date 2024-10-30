@@ -2,4 +2,12 @@
   --primary-font: 'NotoSerif-Medium', 'Times New Roman', serif;
   --secondary-font-regular: 'Ubuntu-Regular', 'Arial', sans-serif;
   --secondary-font-medium: 'Ubuntu-Medium', 'Arial', sans-serif;
+  --font-size-l: 22px;
+  --font-size-m: 28px;
+  --font-line-heigth-s: 1.2;
+  --color-black: #1B1F21;
+  --color-dark-gray: #3c3c3c;
+  --color-light-gray: #D9D9D8;
+  --color-pink: #DA3369;
+  --color-white: #F2F2F2;
 }

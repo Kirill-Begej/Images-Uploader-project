@@ -1,0 +1,12 @@
+.socials-link__image {
+  display: block;
+  fill: var(--color-white);
+  height: 50px;
+  transition: fill .3s ease-out;
+  width: 50px;
+}
+
+.socials-link__image:hover {
+  fill: var(--color-pink);
+}
+
