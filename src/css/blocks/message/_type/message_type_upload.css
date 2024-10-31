@@ -1,0 +1,7 @@
+.message_type_upload {
+  color: var(--color-sky);
+}
+
+.message_type_upload .message__progress-bar {
+  background: var(--color-sky);
+}

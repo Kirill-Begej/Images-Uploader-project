@@ -1,0 +1,14 @@
+.message {  
+  align-items: stretch;
+  background: var(--color-white);
+  border-radius: 10px;
+  bottom: 135px;
+  box-sizing: border-box;  
+  display: flex;
+  font: var(--font-size-s) var(--secondary-font-medium);
+  min-height: 100px;
+  padding: 30px 10px 10px;
+  position: absolute;
+  right: -350px;
+  width: 350px;
+}

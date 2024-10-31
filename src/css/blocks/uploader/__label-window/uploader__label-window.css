@@ -5,8 +5,9 @@
   cursor: pointer;
   display: block;
   display: flex;
+  height: 290px;
   justify-content: center;
-  min-height: 290px;
+  overflow: hidden;
   padding: 10px 0;
   position: relative;
   transition: box-shadow .3s ease-out;

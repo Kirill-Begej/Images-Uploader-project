@@ -1,0 +1,7 @@
+.message_type_download {
+  color: var(--color-mint);
+}
+
+.message_type_download .message__progress-bar {
+  background: var(--color-mint);
+}
