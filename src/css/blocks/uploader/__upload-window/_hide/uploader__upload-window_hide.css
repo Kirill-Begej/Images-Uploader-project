@@ -1,0 +1,13 @@
+@keyframes hideUploadWindow {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    z-index: -10;
+  }
+}
+
+.uploader__upload-window_hide {
+  animation: hideUploadWindow .3s linear forwards;
+}

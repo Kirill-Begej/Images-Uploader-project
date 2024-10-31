@@ -1,0 +1,5 @@
+.uploader__upload-image {
+  fill: var(--color-mint);
+  height: 80px;
+  width: 80px;
+}

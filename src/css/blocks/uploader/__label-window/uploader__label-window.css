@@ -1,0 +1,18 @@
+.uploader__label-window {
+  background: var(--color-white);
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  display: flex;
+  justify-content: center;
+  min-height: 290px;
+  padding: 10px 0;
+  position: relative;
+  transition: box-shadow .3s ease-out;
+  width: 750px;
+}
+
+.uploader__label-window:hover {
+  box-shadow: 0px 0px 6px 4px var(--color-light-gray);
+}

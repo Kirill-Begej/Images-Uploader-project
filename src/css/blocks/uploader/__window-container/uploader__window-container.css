@@ -1,0 +1,6 @@
+.uploader__window-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}

@@ -1,0 +1,11 @@
+.uploader__images-list {
+  color: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  font: var(--font-size-l) var(--secondary-font-regular);
+  gap: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 96%;
+}

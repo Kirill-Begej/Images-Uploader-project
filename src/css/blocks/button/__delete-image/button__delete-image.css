@@ -1,0 +1,6 @@
+.button__delete-image {
+  display: block;
+  height: 40px;
+  transition: fill .3s ease-out;
+  width: 40px;
+}

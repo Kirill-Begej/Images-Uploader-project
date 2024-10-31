@@ -22,9 +22,82 @@
     </header>
 
     <main class="content">
-
+      <section class="uploader">
+        <h1 class="uploader__title">Удобное приложение для&nbsp;загрузки&nbsp;изображений</h1>
+        <p class="uploader__desc">В форме ниже вы можете загрузить до 5 файлов формата JPG, JPEG, PNG. Максимальный размер каждого файла до 10 Мб.</p>
+        <form class="uploader__form" name="uploaderForm" novalidate>
+          <div class="uploader__window-container">
+            <label class="uploader__label-window" for="file">
+              <div class="uploader__upload-window uploader__upload-window_hide">
+                <svg class="uploader__upload-image">
+                  <use href="./assets/images/uploader/uploader-icon.svg#upload"></use>
+                </svg>
+                <div class="uploader__upload-text">Добавьте файл для загрузки</div>
+              </div>
+              <ul class="uploader__images-list">
+                <li class="uploader__images-item">
+                  <span class="uploader__images-name">bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg</span>
+                  <span class="uploader__images-format">JPEG</span>
+                  <span class="uploader__images-size">7.77 МБ</span>
+                  <img class="uploader__images-pic" src="./assets/images/test/bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg" alt="Превью загруженного изображения.">
+                  <button class="button button_type_image-delete uploader__images-delete-button" type="button">
+                    <svg class="button__delete-image">
+                      <use href="./assets/images/uploader/uploader-icon.svg#delete"></use>
+                  </button>
+                </li>
+                <li class="uploader__images-item">
+                  <span class="uploader__images-name">bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg</span>
+                  <span class="uploader__images-format">jpg</span>
+                  <span class="uploader__images-size">3.2 МБ</span>
+                  <img class="uploader__images-pic" src="./assets/images/test/bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg" alt="Превью загруженного изображения.">
+                  <button class="button button_type_image-delete uploader__images-delete-button" type="button">
+                    <svg class="button__delete-image">
+                      <use href="./assets/images/uploader/uploader-icon.svg#delete"></use>
+                  </button>
+                </li>
+                <li class="uploader__images-item">
+                  <span class="uploader__images-name">bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg</span>
+                  <span class="uploader__images-format">jpg</span>
+                  <span class="uploader__images-size">3.2 МБ</span>
+                  <img class="uploader__images-pic" src="./assets/images/test/bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg" alt="Превью загруженного изображения.">
+                  <button class="button button_type_image-delete uploader__images-delete-button" type="button">
+                    <svg class="button__delete-image">
+                      <use href="./assets/images/uploader/uploader-icon.svg#delete"></use>
+                  </button>
+                </li>
+                <li class="uploader__images-item">
+                  <span class="uploader__images-name">bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg</span>
+                  <span class="uploader__images-format">jpg</span>
+                  <span class="uploader__images-size">3.2 МБ</span>
+                  <img class="uploader__images-pic" src="./assets/images/test/bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg" alt="Превью загруженного изображения.">
+                  <button class="button button_type_image-delete uploader__images-delete-button" type="button">
+                    <svg class="button__delete-image">
+                      <use href="./assets/images/uploader/uploader-icon.svg#delete"></use>
+                  </button>
+                </li>
+                <li class="uploader__images-item">
+                  <span class="uploader__images-name">bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg</span>
+                  <span class="uploader__images-format">jpg</span>
+                  <span class="uploader__images-size">3.2 МБ</span>
+                  <img class="uploader__images-pic" src="./assets/images/test/bull-bull-bull-bull-bullbullbull--bullbullbullbullbullbullbull.jpg" alt="Превью загруженного изображения.">
+                  <button class="button button_type_image-delete uploader__images-delete-button" type="button">
+                    <svg class="button__delete-image">
+                      <use href="./assets/images/uploader/uploader-icon.svg#delete"></use>
+                  </button>
+                </li>
+              </ul>
+            </label>
+            <input class="uploader__input" id="file" type="file" accept=".png, .jpg, .jpeg" multiple>
+            <span class="uploader__text">Вы можете загрузить до 5 файлов JPG, JPEG, PNG, размер одного — до 10 МБ</span>
+          </div>
+          <div class="uploader__buttons-container">
+            <label class="button button_type_label" for="file">Выберите файлы</label>
+            <button class="button button_type_submit" type="submit">Загрузите файлы</button>
+          </div>
+        </form>
+      </section>
     </main>
-    
+
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__author">Разработал Кирилл Бегей</div>
