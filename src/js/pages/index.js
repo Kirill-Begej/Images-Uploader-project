@@ -1,7 +1,5 @@
 import 'css/pages/index.css';
+import * as constants from 'js/utils/constants';
+import RenderElements from 'js/components/RenderElements';
 
-// eslint-disable-next-line no-undef
-document.querySelector('.button_type_label').addEventListener('click', () => {
-  // eslint-disable-next-line no-undef
-  document.querySelector('.message').classList.toggle('message_active');
-});
+RenderElements.enableRender(constants);

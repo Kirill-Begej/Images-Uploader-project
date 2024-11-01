@@ -14,5 +14,7 @@ module.exports = {
   ],
   rules: {
     'import/no-unresolved': 0,
+    'no-undef': 0,
+    'no-underscore-dangle': 0,
   },
 };
