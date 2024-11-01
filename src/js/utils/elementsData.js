@@ -95,3 +95,23 @@ export const formData = {
     novalidate: true,
   },
 };
+
+export const messageData = {
+  elementTag: 'ul',
+  elementClass: ['message'],
+};
+
+export const messageContainerData = {
+  elementTag: 'li',
+  elementClass: ['message__container'],
+};
+
+export const messageTextData = {
+  elementTag: 'div',
+  elementClass: ['message__text'],
+};
+
+export const messageProgressBarData = {
+  elementTag: 'div',
+  elementClass: ['message__progress-bar'],
+};
