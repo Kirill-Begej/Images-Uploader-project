@@ -30,9 +30,11 @@ export default class ElementsFactory {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.classList.add(elementClass);
     svg.setAttributeNS(null, 'viewBox', svgAttributeViewBox);
-    Object.keys(elementAttributes).forEach((key) => {
+    elementAttributes.forEach((obj) => {
       const path = document.createElementNS(svg.namespaceURI, 'path');
-      path.setAttributeNS(null, key, elementAttributes[key]);
+      Object.keys(obj).forEach((key) => {
+        path.setAttributeNS(null, key, obj[key]);
+      });
       svg.append(path);
     });
     return svg;
