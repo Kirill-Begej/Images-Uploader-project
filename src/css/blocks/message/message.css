@@ -1,14 +1,16 @@
 .message {  
-  align-items: stretch;
-  background: var(--color-white);
-  border-radius: 10px;
+  align-items: stretch;  
   bottom: 135px;
-  box-sizing: border-box;  
   display: flex;
-  font: var(--font-size-s) var(--secondary-font-medium);
-  min-height: 100px;
-  padding: 30px 10px 10px;
+  flex-direction: column;
+  font: var(--font-size-s) var(--secondary-font-medium);  
+  gap: 10px;
+  justify-content: end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   position: absolute;
   right: -350px;
+  top: 135px;  
   width: 350px;
 }

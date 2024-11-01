@@ -1,5 +1,11 @@
 .message__container {
+  background: var(--color-white);
+  border-radius: 10px;
+  box-sizing: border-box;
+  min-height: 100px;
+  padding: 30px 10px 10px;
   position: relative;
+  right: 0px;
   text-align: center;
   width: 100%;
 }
