@@ -35,6 +35,40 @@ export default class RenderElements {
     });
   }
 
+  static renderMessage(
+    {
+      messageSelector,
+      messageActiveSelector,
+    },
+    text,
+    type,
+  ) {
+    const messageElement = document.querySelector(messageSelector);
+    const messageContainerElement = ElementsFactory.getBlockElement(
+      elementsData.messageContainerData,
+    );
+    messageContainerElement.classList.add(type);
+    messageContainerElement.classList.add(messageActiveSelector);
+    const messageTextElement = ElementsFactory.getBlockElement(elementsData.messageTextData);
+    messageTextElement.textContent = text;
+    const messageProgressBarLineElement = ElementsFactory.getBlockElement(
+      elementsData.messageProgressBarLineData,
+    );
+    const messageProgressBarElement = ElementsFactory.getBlockElement(
+      elementsData.messageProgressBarData,
+    );
+    messageProgressBarElement.append(messageProgressBarLineElement);
+    messageContainerElement.append(messageTextElement, messageProgressBarElement);
+    messageElement.append(messageContainerElement);
+    this._removeMessage(messageContainerElement);
+  }
+
+  static _removeMessage(messageContainerElement) {
+    messageContainerElement.addEventListener('animationend', () => {
+      messageContainerElement.remove();
+    });
+  }
+
   static _renderTitle() {
     return ElementsFactory.getBlockElement(elementsData.titleData);
   }

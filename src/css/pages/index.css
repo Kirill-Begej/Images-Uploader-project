@@ -9,6 +9,7 @@
 @import url('../blocks/message/message.css');
 @import url('../blocks/message/__container/message__container.css');
 @import url('../blocks/message/__progress-bar/message__progress-bar.css');
+@import url('../blocks/message/__progress-bar-line/message__progress-bar-line.css');
 @import url('../blocks/socials-link/socials-link.css');
 @import url('../blocks/socials-link/__image/socials-link__image.css');
 @import url('../blocks/header/header.css');
@@ -41,7 +42,7 @@
 @import url('../blocks/button/_type/button_type_image-delete.css');
 @import url('../blocks/button/_type/button_type_label.css');
 @import url('../blocks/button/_type/button_type_submit.css');
-@import url('../blocks/message/_active/message_active.css');
-@import url('../blocks/message/_type/message_type_error.css');
-@import url('../blocks/message/_type/message_type_download.css');
-@import url('../blocks/message/_type/message_type_upload.css');
+@import url('../blocks/message/__container/_active/message__container_active.css');
+@import url('../blocks/message/__container/_type/message__container_type_error.css');
+@import url('../blocks/message/__container/_type/message__container_type_download.css');
+@import url('../blocks/message/__container/_type/message__container_type_upload.css');

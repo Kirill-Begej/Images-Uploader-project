@@ -110,6 +110,10 @@ export const messageProgressBarData = {
   elementTag: 'div',
   elementClass: ['message__progress-bar'],
 };
+export const messageProgressBarLineData = {
+  elementTag: 'div',
+  elementClass: ['message__progress-bar-line'],
+};
 
 export const svgDeleteImageData = {
   svgAttributeViewBox: '0 0 24 24',

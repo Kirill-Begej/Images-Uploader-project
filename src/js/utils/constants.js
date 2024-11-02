@@ -17,7 +17,20 @@ export const validationConfig = {
 };
 
 export const messageConfig = {
+  messageSelector: '.message',
+  messageActiveSelector: 'message__container_active',
+};
+
+export const messageTextConfig = {
+  download: 'Загрузка файлов...',
   errorSize: 'Превышен максимальный размер файла',
   errorAmount: 'Превышено допустимое количество файлов: 5',
   errorFormat: 'Неверный формат файла',
 };
+
+export const messageType = {
+  download: 'message__container_type_download',
+  error: 'message__container_type_error',
+};
+
+export const delay = 9000;

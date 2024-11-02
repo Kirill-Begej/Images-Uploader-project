@@ -4,9 +4,18 @@ import RenderElements from 'js/components/RenderElements';
 import ValidationFiles from 'js/components/ValidationFiles';
 import DownloadFiles from 'js/components/DownloadFiles';
 
+const appDelay = new Promise((res) => {
+  setTimeout(() => {
+    res();
+  }, constants.delay);
+});
+
 RenderElements.enableRenderForm(constants.formConfig);
 
-const validator = new ValidationFiles(constants.validationConfig, constants.messageConfig);
+const validator = new ValidationFiles(
+  constants.validationConfig,
+  constants.messageTextConfig,
+);
 const downloadFiles = new DownloadFiles(
   constants.formConfig,
   constants.regexpFormatFile,
@@ -17,9 +26,24 @@ const downloadFiles = new DownloadFiles(
         messageState,
       } = validator.enableValidation(filesState, downloadFilesState);
       downloadFiles.setFileState(fileState);
-      RenderElements.renderImagesItems(constants.formConfig, fileState);
-      // eslint-disable-next-line no-console
-      console.log(messageState);
+      RenderElements.renderMessage(
+        constants.messageConfig,
+        constants.messageTextConfig.download,
+        constants.messageType.download,
+      );
+      if (fileState.length) {
+        appDelay
+          .then(() => {
+            RenderElements.renderImagesItems(constants.formConfig, fileState);
+            if (messageState.length) {
+              RenderElements.renderMessage(
+                constants.messageConfig,
+                constants.messageTextConfig.download,
+                constants.messageType.error,
+              );
+            }
+          });
+      }
     },
   },
 );

@@ -13,8 +13,6 @@ export default class DownloadFiles {
 
   setFileState(filesState) {
     this._filesState = filesState;
-    // eslint-disable-next-line no-console
-    console.log(this._filesState);
   }
 
   _setDownloadFilesState(downloadFiles) {
