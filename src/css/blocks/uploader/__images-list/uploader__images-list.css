@@ -1,6 +1,6 @@
 .uploader__images-list {
   color: var(--color-black);
-  display: none;
+  display: flex;
   flex-direction: column;
   font: var(--font-size-l) var(--secondary-font-regular);
   gap: 5px;
@@ -8,5 +8,6 @@
   margin: 0;
   overflow-y: auto;
   padding: 0;
+  position: relative;
   width: 96%;
 }
