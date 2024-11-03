@@ -22,6 +22,10 @@ export default class DownloadFiles {
     return this._filesState;
   }
 
+  getFileState() {
+    return this._filesState;
+  }
+
   #setDownloadFilesState(downloadFiles) {
     Object.keys(downloadFiles).forEach((key) => {
       this._downloadFilesState.push({
@@ -30,6 +34,7 @@ export default class DownloadFiles {
         format: downloadFiles[key].name.match(this._regexpFormatFile)[1].toLowerCase(),
         size: downloadFiles[key].size,
         preview: URL.createObjectURL(downloadFiles[key]),
+        file: downloadFiles[key],
       });
       this._id += 1;
     });

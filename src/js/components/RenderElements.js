@@ -11,7 +11,7 @@ export default class RenderElements {
     imagesItemSelector,
     uploadWindowHideSelector,
     imagesListShowSlector,
-  }, { getIdElement }) {
+  }, { getIdElement, handleSubmit }) {
     this._formContainerSelector = formContainerSelector;
     this._labelWindowSelector = labelWindowSelector;
     this._inputSelector = inputSelector;
@@ -21,6 +21,7 @@ export default class RenderElements {
     this._uploadWindowHideSelector = uploadWindowHideSelector;
     this._imagesListShowSlector = imagesListShowSlector;
     this._getIdElement = getIdElement;
+    this._handleSubmit = handleSubmit;
   }
 
   enableRenderForm() {
@@ -40,6 +41,7 @@ export default class RenderElements {
     text,
     type,
     renderItems = [],
+    upload = false,
   ) {
     const messageElement = document.querySelector(messageSelector);
     const messageContainerElement = ElementsFactory.getBlockElement(
@@ -48,7 +50,7 @@ export default class RenderElements {
     messageContainerElement.classList.add(type);
     messageContainerElement.classList.add(messageActiveSelector);
     const messageTextElement = ElementsFactory.getBlockElement(elementsData.messageTextData);
-    if (renderItems.length) {
+    if (renderItems.length || upload) {
       messageTextElement.textContent = text;
     } else {
       messageTextElement.textContent = text.errorText;
@@ -162,6 +164,10 @@ export default class RenderElements {
     );
     buttonsContainerElement.append(buttonLabelElement, buttonSubmitElement);
     const formElement = ElementsFactory.getBlockElement(elementsData.formData);
+    formElement.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this._handleSubmit();
+    });
     formElement.append(windowContainerElement, buttonsContainerElement);
     return formElement;
   }

@@ -5,6 +5,7 @@ export const formConfig = {
   uploadWindowSelector: '.uploader__upload-window',
   imagesListSlector: '.uploader__images-list',
   imagesItemSelector: '.uploader__images-item',
+  buttonSubmitSelector: 'button_type_submit',
   uploadWindowHideSelector: 'uploader__upload-window_hide',
   imagesListShowSlector: 'uploader__images-list_show',
 };
@@ -24,14 +25,18 @@ export const messageConfig = {
 
 export const messageTextConfig = {
   download: 'Загрузка файлов...',
+  upload: 'Загрузка файлов на сервер...',
   errorSize: 'Превышен максимальный размер файла',
   errorAmount: `Превышено допустимое количество файлов: ${validationConfig.maxAmountFiles}`,
   errorFormat: 'Неверный формат файла',
+  errorUpload: 'Добавьте файлы для загрузки на сервер',
+  errorLoad: 'Дождитесь загрузки файлов',
 };
 
 export const messageType = {
   download: 'message__container_type_download',
+  upload: 'message__container_type_upload',
   error: 'message__container_type_error',
 };
 
-export const delay = 9000;
+export const baseUrl = 'https://jsonplaceholder.typicode.com/posts';
