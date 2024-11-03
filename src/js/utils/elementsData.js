@@ -101,6 +101,16 @@ export const messageContainerData = {
   elementClass: ['message__container'],
 };
 
+export const messageListData = {
+  elementTag: 'ul',
+  elementClass: ['message__list'],
+};
+
+export const messageItemData = {
+  elementTag: 'li',
+  elementClass: ['message__item'],
+};
+
 export const messageTextData = {
   elementTag: 'div',
   elementClass: ['message__text'],

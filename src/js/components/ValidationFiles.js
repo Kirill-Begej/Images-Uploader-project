@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 export default class ValidationFiles {
   constructor({
     maxSizeFile,
@@ -31,20 +32,30 @@ export default class ValidationFiles {
     };
   }
 
+  #arrayComparison(downloadFiles, checkFiles) {
+    return downloadFiles.filter((downloadFile) => {
+      return !checkFiles.some((checkFile) => {
+        return downloadFile.name === checkFile.name;
+      });
+    });
+  }
+
   #checkFormatFile(downloadFilesState) {
     const state = [];
-    for (let i = 0; i < this._formatFiles.length; i += 1) {
+    this._formatFiles.forEach((format) => {
       downloadFilesState.forEach((item) => {
-        if (this._formatFiles[i] === item.format) {
+        if (format === item.format) {
           state.push(item);
         }
       });
-    }
-    if (state.length !== downloadFilesState.length) {
-      for (let i = state.length; i < downloadFilesState.length; i += 1) {
-        this._messageState.push(this._errorFormat);
-      }
-    }
+    });
+    const filesIncorrectFormat = this.#arrayComparison(downloadFilesState, state);
+    filesIncorrectFormat.forEach((item) => {
+      this._messageState.push({
+        errorText: this._errorFormat,
+        fileName: item.name,
+      });
+    });
     return state;
   }
 
@@ -55,31 +66,35 @@ export default class ValidationFiles {
         state.push(item);
       }
     });
-    if (state.length !== downloadFilesState.length) {
-      for (let i = state.length; i < downloadFilesState.length; i += 1) {
-        this._messageState.push(this._errorSize);
-      }
-    }
+    const filesIncorrectSize = this.#arrayComparison(downloadFilesState, state);
+    filesIncorrectSize.forEach((item) => {
+      this._messageState.push({
+        errorText: this._errorSize,
+        fileName: item.name,
+      });
+    });
     return state;
   }
 
   #checkDoubleFiles(downloadFilesState) {
-    const state = downloadFilesState;
     const doubleFile = [];
     for (let i = 0; i < this._filesState.length; i += 1) {
-      state.forEach((item, j) => {
+      downloadFilesState.forEach((item) => {
         if (this._filesState[i].name === item.name) {
           doubleFile.push(item);
-          downloadFilesState.splice(j, 1);
         }
       });
     }
+    const state = this.#arrayComparison(downloadFilesState, doubleFile);
     if (doubleFile.length) {
-      doubleFile.forEach((key) => {
-        this._messageState.push(`Файл ${key.name} уже добавлен`);
+      doubleFile.forEach((item) => {
+        this._messageState.push({
+          errorText: `Файл ${item.name} уже добавлен`,
+          fileName: '',
+        });
       });
     }
-    return downloadFilesState;
+    return this._filesState.length ? state : downloadFilesState;
   }
 
   #checkAmountFiles(downloadFilesState) {
@@ -99,7 +114,10 @@ export default class ValidationFiles {
         state.push(item);
         this._filesState.push(item);
       }
-      this._messageState.push(this._errorAmount);
+      this._messageState.push({
+        errorText: this._errorAmount,
+        fileName: '',
+      });
     }
     return state;
   }

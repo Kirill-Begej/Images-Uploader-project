@@ -35,7 +35,7 @@ export default class RenderElements {
     });
   }
 
-  renderMessage(
+  renderMessageAndImagesItems(
     {
       messageSelector,
       messageActiveSelector,
@@ -52,7 +52,23 @@ export default class RenderElements {
     messageContainerElement.classList.add(type);
     messageContainerElement.classList.add(messageActiveSelector);
     const messageTextElement = ElementsFactory.getBlockElement(elementsData.messageTextData);
-    messageTextElement.textContent = text;
+    if (renderItems.length) {
+      messageTextElement.textContent = text;
+    } else {
+      messageTextElement.textContent = text.errorText;
+    }
+    const messageListElement = ElementsFactory.getBlockElement(elementsData.messageListData);
+    if (renderItems.length) {
+      renderItems.forEach((item) => {
+        const messageItemElement = ElementsFactory.getBlockElement(elementsData.messageItemData);
+        messageItemElement.textContent = item.name;
+        messageListElement.append(messageItemElement);
+      });
+    } else {
+      const messageItemElement = ElementsFactory.getBlockElement(elementsData.messageItemData);
+      messageItemElement.textContent = text.fileName;
+      messageListElement.append(messageItemElement);
+    }
     const messageProgressBarLineElement = ElementsFactory.getBlockElement(
       elementsData.messageProgressBarLineData,
     );
@@ -60,7 +76,11 @@ export default class RenderElements {
       elementsData.messageProgressBarData,
     );
     messageProgressBarElement.append(messageProgressBarLineElement);
-    messageContainerElement.append(messageTextElement, messageProgressBarElement);
+    messageContainerElement.append(
+      messageTextElement,
+      messageListElement,
+      messageProgressBarElement,
+    );
     messageElement.append(messageContainerElement);
     if (renderItems.length) {
       this._removeMessageAndRenderImagesItems(messageContainerElement, formConfig, renderItems);
@@ -77,7 +97,7 @@ export default class RenderElements {
 
   _removeMessageAndRenderImagesItems(messageContainerElement, formConfig, renderItems) {
     messageContainerElement.addEventListener('animationend', () => {
-      // messageContainerElement.remove();
+      messageContainerElement.remove();
       this.renderImagesItems(formConfig, renderItems);
     });
   }

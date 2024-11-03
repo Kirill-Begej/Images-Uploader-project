@@ -25,7 +25,7 @@ const downloadFiles = new DownloadFiles(
       downloadFiles.setFileState(newFileState);
       if (!renderFiles.length && messageState.length) {
         messageState.forEach((messsage) => {
-          renderElements.renderMessage(
+          renderElements.renderMessageAndImagesItems(
             constants.messageConfig,
             messsage,
             constants.messageType.error,
@@ -33,7 +33,7 @@ const downloadFiles = new DownloadFiles(
         });
       }
       if (renderFiles.length) {
-        renderElements.renderMessage(
+        renderElements.renderMessageAndImagesItems(
           constants.messageConfig,
           constants.messageTextConfig.download,
           constants.messageType.download,
@@ -41,7 +41,7 @@ const downloadFiles = new DownloadFiles(
           renderFiles,
         );
         messageState.forEach((messsage) => {
-          renderElements.renderMessage(
+          renderElements.renderMessageAndImagesItems(
             constants.messageConfig,
             messsage,
             constants.messageType.error,
