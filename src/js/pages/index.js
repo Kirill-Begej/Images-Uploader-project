@@ -4,8 +4,13 @@ import RenderElements from 'js/components/RenderElements';
 import ValidationFiles from 'js/components/ValidationFiles';
 import DownloadFiles from 'js/components/DownloadFiles';
 
-const renderElements = new RenderElements();
-renderElements.enableRenderForm(constants.formConfig);
+const renderElements = new RenderElements(constants.formConfig, {
+  getIdElement: (id) => {
+    const filesState = downloadFiles.setNewFileState(id);
+    renderElements.removeAndRenderItems(filesState);
+  },
+});
+renderElements.enableRenderForm();
 
 const validator = new ValidationFiles(
   constants.validationConfig,
@@ -37,7 +42,6 @@ const downloadFiles = new DownloadFiles(
           constants.messageConfig,
           constants.messageTextConfig.download,
           constants.messageType.download,
-          constants.formConfig,
           renderFiles,
         );
         messageState.forEach((messsage) => {

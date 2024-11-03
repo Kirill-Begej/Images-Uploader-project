@@ -1,5 +1,6 @@
 export const formConfig = {
   formContainerSelector: '.uploader',
+  labelWindowSelector: '.uploader__label-window',
   inputSelector: '.uploader__input',
   uploadWindowSelector: '.uploader__upload-window',
   imagesListSlector: '.uploader__images-list',

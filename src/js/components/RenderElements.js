@@ -2,37 +2,34 @@ import * as elementsData from 'js/utils/elementsData';
 import ElementsFactory from 'js/components/ElementsFactory';
 
 export default class RenderElements {
-  enableRenderForm({ formContainerSelector }) {
-    const parentElement = document.querySelector(formContainerSelector);
-    parentElement.append(
-      this._renderTitle(),
-      this._renderDescription(),
-      this._renderForm(),
-    );
+  constructor({
+    formContainerSelector,
+    labelWindowSelector,
+    inputSelector,
+    uploadWindowSelector,
+    imagesListSlector,
+    imagesItemSelector,
+    uploadWindowHideSelector,
+    imagesListShowSlector,
+  }, { getIdElement }) {
+    this._formContainerSelector = formContainerSelector;
+    this._labelWindowSelector = labelWindowSelector;
+    this._inputSelector = inputSelector;
+    this._uploadWindowSelector = uploadWindowSelector;
+    this._imagesListSlector = imagesListSlector;
+    this._imagesItemSelector = imagesItemSelector;
+    this._uploadWindowHideSelector = uploadWindowHideSelector;
+    this._imagesListShowSlector = imagesListShowSlector;
+    this._getIdElement = getIdElement;
   }
 
-  renderImagesItems(
-    {
-      formContainerSelector,
-      uploadWindowSelector,
-      imagesListSlector,
-      uploadWindowHideSelector,
-      imagesListShowSlector,
-    },
-    fileState,
-  ) {
-    const form = document.querySelector(formContainerSelector);
-    const uploadWindow = form.querySelector(uploadWindowSelector);
-    const imagesList = form.querySelector(imagesListSlector);
-    if (!uploadWindow.classList.contains(uploadWindowHideSelector)) {
-      uploadWindow.classList.add(uploadWindowHideSelector);
-    }
-    if (!imagesList.classList.contains(imagesListShowSlector)) {
-      imagesList.classList.add(imagesListShowSlector);
-    }
-    fileState.forEach((obj) => {
-      imagesList.append(this._renderItem(obj));
-    });
+  enableRenderForm() {
+    const parentElement = document.querySelector(this._formContainerSelector);
+    parentElement.append(
+      this.#renderTitle(),
+      this.#renderDescription(),
+      this.#renderForm(),
+    );
   }
 
   renderMessageAndImagesItems(
@@ -42,7 +39,6 @@ export default class RenderElements {
     },
     text,
     type,
-    formConfig = {},
     renderItems = [],
   ) {
     const messageElement = document.querySelector(messageSelector);
@@ -83,34 +79,68 @@ export default class RenderElements {
     );
     messageElement.append(messageContainerElement);
     if (renderItems.length) {
-      this._removeMessageAndRenderImagesItems(messageContainerElement, formConfig, renderItems);
+      this.#removeMessageAndRenderImagesItems(messageContainerElement, renderItems);
     } else {
-      this._removeMessage(messageContainerElement);
+      this.#removeMessage(messageContainerElement);
     }
   }
 
-  _removeMessage(messageContainerElement) {
+  removeAndRenderItems(filesState) {
+    const imagesList = document.querySelector(this._imagesListSlector);
+    while (imagesList.firstChild) {
+      imagesList.removeChild(imagesList.firstChild);
+    }
+    filesState.forEach((obj) => {
+      imagesList.append(this.#renderItem(obj));
+    });
+    if (!filesState.length) {
+      this.#imagesListHideAndUploadWindowShow();
+    }
+  }
+
+  #imagesListHideAndUploadWindowShow() {
+    const form = document.querySelector(this._formContainerSelector);
+    const uploadWindow = form.querySelector(this._uploadWindowSelector);
+    const imagesList = form.querySelector(this._imagesListSlector);
+    uploadWindow.classList.remove(this._uploadWindowHideSelector);
+    form.querySelector(this._labelWindowSelector).setAttribute('for', 'file');
+    imagesList.classList.remove(this._imagesListShowSlector);
+  }
+
+  #renderImagesItems(filesState) {
+    const form = document.querySelector(this._formContainerSelector);
+    const uploadWindow = form.querySelector(this._uploadWindowSelector);
+    const imagesList = form.querySelector(this._imagesListSlector);
+    uploadWindow.classList.add(this._uploadWindowHideSelector);
+    form.querySelector(this._labelWindowSelector).setAttribute('for', '');
+    imagesList.classList.add(this._imagesListShowSlector);
+    filesState.forEach((obj) => {
+      imagesList.append(this.#renderItem(obj));
+    });
+  }
+
+  #removeMessage(messageContainerElement) {
     messageContainerElement.addEventListener('animationend', () => {
       messageContainerElement.remove();
     });
   }
 
-  _removeMessageAndRenderImagesItems(messageContainerElement, formConfig, renderItems) {
+  #removeMessageAndRenderImagesItems(messageContainerElement, renderItems) {
     messageContainerElement.addEventListener('animationend', () => {
       messageContainerElement.remove();
-      this.renderImagesItems(formConfig, renderItems);
+      this.#renderImagesItems(renderItems);
     });
   }
 
-  _renderTitle() {
+  #renderTitle() {
     return ElementsFactory.getBlockElement(elementsData.titleData);
   }
 
-  _renderDescription() {
+  #renderDescription() {
     return ElementsFactory.getBlockElement(elementsData.descriptionData);
   }
 
-  _renderForm() {
+  #renderForm() {
     const svgElement = ElementsFactory.getSvgElement(elementsData.svgUploadData);
     const uploadTextElement = ElementsFactory.getBlockElement(elementsData.uploadTextData);
     const uploadWindowElement = ElementsFactory.getBlockElement(elementsData.uploadWindowData);
@@ -135,14 +165,15 @@ export default class RenderElements {
     return formElement;
   }
 
-  _formatSizeItem(size) {
+  #formatSizeItem(size) {
     const precision = 2;
     const units = ['Б', 'КБ', 'МБ'];
     const index = Math.floor(Math.log(size) / Math.log(1024));
     return `${(size / 1024 ** index).toFixed(precision)} ${units[index]}`;
   }
 
-  _renderItem({
+  #renderItem({
+    id,
     name,
     format,
     size,
@@ -150,16 +181,21 @@ export default class RenderElements {
   }) {
     const svgElement = ElementsFactory.getSvgElement(elementsData.svgDeleteImageData);
     const buttonDeleteElement = ElementsFactory.getBlockElement(elementsData.buttonDeleteData);
+    buttonDeleteElement.dataset.itemId = id;
     buttonDeleteElement.append(svgElement);
+    buttonDeleteElement.addEventListener('click', (e) => {
+      this._getIdElement(e.currentTarget.getAttribute('data-item-id'));
+    });
     const imagesNameElement = ElementsFactory.getBlockElement(elementsData.imagesNameData);
     imagesNameElement.textContent = name;
     const imagesFormatElement = ElementsFactory.getBlockElement(elementsData.imagesFormatData);
     imagesFormatElement.textContent = format;
     const imagesSizeElement = ElementsFactory.getBlockElement(elementsData.imagesSizeData);
-    imagesSizeElement.textContent = this._formatSizeItem(size);
+    imagesSizeElement.textContent = this.#formatSizeItem(size);
     const imagesPicElement = ElementsFactory.getBlockElement(elementsData.imagesPicData);
     imagesPicElement.src = preview;
     const imagesItemElement = ElementsFactory.getBlockElement(elementsData.imagesItemData);
+    imagesItemElement.dataset.itemId = id;
     imagesItemElement.append(
       imagesNameElement,
       imagesFormatElement,
