@@ -77,7 +77,7 @@ export default class RenderElements {
 
   _removeMessageAndRenderImagesItems(messageContainerElement, formConfig, renderItems) {
     messageContainerElement.addEventListener('animationend', () => {
-      messageContainerElement.remove();
+      // messageContainerElement.remove();
       this.renderImagesItems(formConfig, renderItems);
     });
   }

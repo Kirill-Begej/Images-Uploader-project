@@ -1,4 +1,5 @@
 .message__container_type_download {
+  box-shadow: 0px 0px 0px 1.5px var(--color-mint);
   color: var(--color-mint);
 }
 

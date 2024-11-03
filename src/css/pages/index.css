@@ -8,6 +8,8 @@
 @import url('../blocks/button/__delete-image/button__delete-image.css');
 @import url('../blocks/message/message.css');
 @import url('../blocks/message/__container/message__container.css');
+@import url('../blocks/message/__list/message__list.css');
+@import url('../blocks/message/__item/message__item.css');
 @import url('../blocks/message/__progress-bar/message__progress-bar.css');
 @import url('../blocks/message/__progress-bar-line/message__progress-bar-line.css');
 @import url('../blocks/socials-link/socials-link.css');
