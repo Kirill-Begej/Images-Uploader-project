@@ -35,11 +35,8 @@ export const imagesListData = {
 };
 
 export const labelWindowData = {
-  elementTag: 'label',
+  elementTag: 'div',
   elementClass: ['uploader__label-window'],
-  elementAttributes: {
-    for: 'file',
-  },
 };
 
 export const inputData = {

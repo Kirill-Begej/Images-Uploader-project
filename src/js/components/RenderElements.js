@@ -103,7 +103,6 @@ export default class RenderElements {
     const uploadWindow = form.querySelector(this._uploadWindowSelector);
     const imagesList = form.querySelector(this._imagesListSlector);
     uploadWindow.classList.remove(this._uploadWindowHideSelector);
-    form.querySelector(this._labelWindowSelector).setAttribute('for', 'file');
     imagesList.classList.remove(this._imagesListShowSlector);
   }
 
@@ -112,7 +111,6 @@ export default class RenderElements {
     const uploadWindow = form.querySelector(this._uploadWindowSelector);
     const imagesList = form.querySelector(this._imagesListSlector);
     uploadWindow.classList.add(this._uploadWindowHideSelector);
-    form.querySelector(this._labelWindowSelector).setAttribute('for', '');
     imagesList.classList.add(this._imagesListShowSlector);
     filesState.forEach((obj) => {
       imagesList.append(this.#renderItem(obj));
@@ -146,9 +144,12 @@ export default class RenderElements {
     const uploadWindowElement = ElementsFactory.getBlockElement(elementsData.uploadWindowData);
     uploadWindowElement.append(svgElement, uploadTextElement);
     const imageListElement = ElementsFactory.getBlockElement(elementsData.imagesListData);
-    const labelWindowElement = ElementsFactory.getBlockElement(elementsData.labelWindowData);
-    labelWindowElement.append(uploadWindowElement, imageListElement);
     const inputElement = ElementsFactory.getBlockElement(elementsData.inputData);
+    const labelWindowElement = ElementsFactory.getBlockElement(elementsData.labelWindowData);
+    labelWindowElement.addEventListener('click', () => {
+      inputElement.click();
+    });
+    labelWindowElement.append(uploadWindowElement, imageListElement);
     const spanElement = ElementsFactory.getBlockElement(elementsData.textData);
     const windowContainerElement = ElementsFactory.getBlockElement(
       elementsData.windowContainerData,
@@ -184,6 +185,7 @@ export default class RenderElements {
     buttonDeleteElement.dataset.itemId = id;
     buttonDeleteElement.append(svgElement);
     buttonDeleteElement.addEventListener('click', (e) => {
+      e.stopPropagation();
       this._getIdElement(e.currentTarget.getAttribute('data-item-id'));
     });
     const imagesNameElement = ElementsFactory.getBlockElement(elementsData.imagesNameData);
