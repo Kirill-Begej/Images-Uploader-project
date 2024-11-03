@@ -8,7 +8,7 @@ export const formConfig = {
   imagesListShowSlector: 'uploader__images-list_show',
 };
 
-export const regexpFormatFile = /\.([a-zA-Z]+)$/;
+export const regexpFormatFile = /(?:\.([^.]+))?$/;
 
 export const validationConfig = {
   maxSizeFile: 1e7,
@@ -24,7 +24,7 @@ export const messageConfig = {
 export const messageTextConfig = {
   download: 'Загрузка файлов...',
   errorSize: 'Превышен максимальный размер файла',
-  errorAmount: 'Превышено допустимое количество файлов: 5',
+  errorAmount: `Превышено допустимое количество файлов: ${validationConfig.maxAmountFiles}`,
   errorFormat: 'Неверный формат файла',
 };
 

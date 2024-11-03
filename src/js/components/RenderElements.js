@@ -2,7 +2,7 @@ import * as elementsData from 'js/utils/elementsData';
 import ElementsFactory from 'js/components/ElementsFactory';
 
 export default class RenderElements {
-  static enableRenderForm({ formContainerSelector }) {
+  enableRenderForm({ formContainerSelector }) {
     const parentElement = document.querySelector(formContainerSelector);
     parentElement.append(
       this._renderTitle(),
@@ -11,7 +11,7 @@ export default class RenderElements {
     );
   }
 
-  static renderImagesItems(
+  renderImagesItems(
     {
       formContainerSelector,
       uploadWindowSelector,
@@ -35,13 +35,15 @@ export default class RenderElements {
     });
   }
 
-  static renderMessage(
+  renderMessage(
     {
       messageSelector,
       messageActiveSelector,
     },
     text,
     type,
+    formConfig = {},
+    renderItems = [],
   ) {
     const messageElement = document.querySelector(messageSelector);
     const messageContainerElement = ElementsFactory.getBlockElement(
@@ -60,24 +62,35 @@ export default class RenderElements {
     messageProgressBarElement.append(messageProgressBarLineElement);
     messageContainerElement.append(messageTextElement, messageProgressBarElement);
     messageElement.append(messageContainerElement);
-    this._removeMessage(messageContainerElement);
+    if (renderItems.length) {
+      this._removeMessageAndRenderImagesItems(messageContainerElement, formConfig, renderItems);
+    } else {
+      this._removeMessage(messageContainerElement);
+    }
   }
 
-  static _removeMessage(messageContainerElement) {
+  _removeMessage(messageContainerElement) {
     messageContainerElement.addEventListener('animationend', () => {
       messageContainerElement.remove();
     });
   }
 
-  static _renderTitle() {
+  _removeMessageAndRenderImagesItems(messageContainerElement, formConfig, renderItems) {
+    messageContainerElement.addEventListener('animationend', () => {
+      messageContainerElement.remove();
+      this.renderImagesItems(formConfig, renderItems);
+    });
+  }
+
+  _renderTitle() {
     return ElementsFactory.getBlockElement(elementsData.titleData);
   }
 
-  static _renderDescription() {
+  _renderDescription() {
     return ElementsFactory.getBlockElement(elementsData.descriptionData);
   }
 
-  static _renderForm() {
+  _renderForm() {
     const svgElement = ElementsFactory.getSvgElement(elementsData.svgUploadData);
     const uploadTextElement = ElementsFactory.getBlockElement(elementsData.uploadTextData);
     const uploadWindowElement = ElementsFactory.getBlockElement(elementsData.uploadWindowData);
@@ -102,14 +115,14 @@ export default class RenderElements {
     return formElement;
   }
 
-  static _formatSizeItem(size) {
+  _formatSizeItem(size) {
     const precision = 2;
     const units = ['Б', 'КБ', 'МБ'];
     const index = Math.floor(Math.log(size) / Math.log(1024));
     return `${(size / 1024 ** index).toFixed(precision)} ${units[index]}`;
   }
 
-  static _renderItem({
+  _renderItem({
     name,
     format,
     size,

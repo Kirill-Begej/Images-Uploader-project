@@ -16,5 +16,6 @@ module.exports = {
     'import/no-unresolved': 0,
     'no-undef': 0,
     'no-underscore-dangle': 0,
+    'class-methods-use-this': 0,
   },
 };
