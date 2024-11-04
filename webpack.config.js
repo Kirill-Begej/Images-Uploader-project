@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
@@ -14,28 +16,28 @@ module.exports = (env) => {
     loader: 'html-loader',
   };
 
-  const postCssLoader = {
-    loader: 'postcss-loader',
-    options: {
-      postcssOptions: {
-        plugins: [
-          [
-            'postcss-preset-env',
-            {
-              browsers: 'last 4 versions',
-            },
-          ],
-        ],
-      },
-    },
-  };
+  // const postCssLoader = {
+  //   loader: 'postcss-loader',
+  //   options: {
+  //     postcssOptions: {
+  //       plugins: [
+  //         [
+  //           'postcss-preset-env',
+  //           {
+  //             browsers: 'last 3 versions',
+  //           },
+  //         ],
+  //       ],
+  //     },
+  //   },
+  // };
 
   const cssLoader = {
     test: /\.css$/i,
     use: [
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       'css-loader',
-      isProd && postCssLoader,
+      // postCssLoader,
     ],
   };
 
@@ -90,6 +92,11 @@ module.exports = (env) => {
       },
       extensions: ['.js'],
     },
+    optimization: {
+      minimizer: [
+        new CssMinimizerPlugin(),
+      ],
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src', 'index.html'),
@@ -99,6 +106,7 @@ module.exports = (env) => {
         filename: 'css/[name].[contenthash:8].css',
         chunkFilename: 'css/[name].[contenthash:8].css',
       }),
+      isProd && new MiniCssExtractPlugin(),
       isDev && new ESLintPlugin(),
       new FaviconsWebpackPlugin({
         logo: path.resolve(__dirname, 'src', 'assets', 'images', 'favicon', 'favicon.png'),
