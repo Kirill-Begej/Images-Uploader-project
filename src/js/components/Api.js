@@ -8,20 +8,20 @@ export default class Api {
     filesState.forEach((item) => {
       data.append(item.name, item.file);
     });
-    return this._request(this._baseUrl, {
+    return this.#request(this._baseUrl, {
       method: 'POST',
       body: data,
     });
   }
 
-  _checkResponse(res) {
+  #checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(new Error(`Ошибка: ${res.status}`));
   }
 
-  _request(url, options) {
-    return fetch(url, options).then(this._checkResponse);
+  #request(url, options) {
+    return fetch(url, options).then(this.#checkResponse);
   }
 }
