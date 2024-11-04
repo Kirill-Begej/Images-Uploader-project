@@ -11,7 +11,14 @@ export default class RenderElements {
     imagesItemSelector,
     uploadWindowHideSelector,
     imagesListShowSlector,
-  }, { getIdElement, handleSubmit }) {
+  }, {
+    getIdElement,
+    handleSubmit,
+    itemDragEventListener,
+    itemDragoverEventListener,
+    itemDragenterEventListener,
+    itemDropEventListener,
+  }) {
     this._formContainerSelector = formContainerSelector;
     this._labelWindowSelector = labelWindowSelector;
     this._inputSelector = inputSelector;
@@ -22,6 +29,10 @@ export default class RenderElements {
     this._imagesListShowSlector = imagesListShowSlector;
     this._getIdElement = getIdElement;
     this._handleSubmit = handleSubmit;
+    this._itemDragEventListener = itemDragEventListener;
+    this._itemDragoverEventListener = itemDragoverEventListener;
+    this._itemDragenterEventListener = itemDragenterEventListener;
+    this._itemDropEventListener = itemDropEventListener;
   }
 
   enableRenderForm() {
@@ -104,6 +115,9 @@ export default class RenderElements {
     const form = document.querySelector(this._formContainerSelector);
     const uploadWindow = form.querySelector(this._uploadWindowSelector);
     const imagesList = form.querySelector(this._imagesListSlector);
+    this._itemDragoverEventListener(imagesList);
+    this._itemDragenterEventListener(imagesList);
+    this._itemDropEventListener(imagesList);
     uploadWindow.classList.remove(this._uploadWindowHideSelector);
     imagesList.classList.remove(this._imagesListShowSlector);
   }
@@ -112,6 +126,9 @@ export default class RenderElements {
     const form = document.querySelector(this._formContainerSelector);
     const uploadWindow = form.querySelector(this._uploadWindowSelector);
     const imagesList = form.querySelector(this._imagesListSlector);
+    this._itemDragoverEventListener(imagesList);
+    this._itemDragenterEventListener(imagesList);
+    this._itemDropEventListener(imagesList);
     uploadWindow.classList.add(this._uploadWindowHideSelector);
     imagesList.classList.add(this._imagesListShowSlector);
     filesState.forEach((obj) => {
@@ -148,9 +165,10 @@ export default class RenderElements {
     const imageListElement = ElementsFactory.getBlockElement(elementsData.imagesListData);
     const inputElement = ElementsFactory.getBlockElement(elementsData.inputData);
     const labelWindowElement = ElementsFactory.getBlockElement(elementsData.labelWindowData);
-    labelWindowElement.addEventListener('click', () => {
-      inputElement.click();
-    });
+    // labelWindowElement.addEventListener('click', (e) => {
+    //   e.stopPropagation();
+    //   inputElement.click();
+    // });
     labelWindowElement.append(uploadWindowElement, imageListElement);
     const spanElement = ElementsFactory.getBlockElement(elementsData.textData);
     const windowContainerElement = ElementsFactory.getBlockElement(
@@ -203,6 +221,7 @@ export default class RenderElements {
     const imagesPicElement = ElementsFactory.getBlockElement(elementsData.imagesPicData);
     imagesPicElement.src = preview;
     const imagesItemElement = ElementsFactory.getBlockElement(elementsData.imagesItemData);
+    this._itemDragEventListener(imagesItemElement);
     imagesItemElement.dataset.itemId = id;
     imagesItemElement.append(
       imagesNameElement,

@@ -40,3 +40,10 @@ export const messageType = {
 };
 
 export const baseUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+export const itemDnDConfig = {
+  draggingSelector: 'uploader__images-item_dragging',
+  imagesListSelector: '.uploader__images-list',
+  imagesItem: '.uploader__images-item',
+  imagesNotDraggingSelector: '.uploader__images-item:not(.uploader__images-item_dragging)',
+};

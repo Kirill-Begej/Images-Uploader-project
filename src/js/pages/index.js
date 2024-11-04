@@ -4,8 +4,18 @@ import Api from 'js/components/Api';
 import RenderElements from 'js/components/RenderElements';
 import ValidationFiles from 'js/components/ValidationFiles';
 import DownloadFiles from 'js/components/DownloadFiles';
+import ItemsDragAndDrop from 'js/components/ItemsDragAndDrop';
 
 const api = new Api(constants.baseUrl);
+const itemsDragAndDrop = new ItemsDragAndDrop(constants.itemDnDConfig, {
+  getFileState: () => downloadFiles.getFileState(),
+  renderItems: (filesState) => {
+    renderElements.removeAndRenderItems(filesState);
+  },
+  setFilesState: (filesState) => {
+    downloadFiles.setFileState(filesState);
+  },
+});
 
 const renderElements = new RenderElements(constants.formConfig, {
   getIdElement: (id) => {
@@ -15,8 +25,6 @@ const renderElements = new RenderElements(constants.formConfig, {
   handleSubmit: () => {
     const files = downloadFiles.getFileState();
     const checkStatus = document.querySelectorAll(`.${constants.messageConfig.messageActiveSelector}`);
-    // eslint-disable-next-line no-console
-    console.log(checkStatus.length);
     if (files.length && !checkStatus.length) {
       renderElements.renderMessageAndImagesItems(
         constants.messageConfig,
@@ -34,14 +42,6 @@ const renderElements = new RenderElements(constants.formConfig, {
           // eslint-disable-next-line no-console
           console.log(err);
         });
-    } else if (checkStatus.length) {
-      renderElements.renderMessageAndImagesItems(
-        constants.messageConfig,
-        constants.messageTextConfig.errorLoad,
-        constants.messageType.error,
-        [],
-        true,
-      );
     } else {
       renderElements.renderMessageAndImagesItems(
         constants.messageConfig,
@@ -51,6 +51,18 @@ const renderElements = new RenderElements(constants.formConfig, {
         true,
       );
     }
+  },
+  itemDragEventListener: (imagesItem) => {
+    itemsDragAndDrop.dragEventListener(imagesItem);
+  },
+  itemDragoverEventListener: (imagesContainer) => {
+    itemsDragAndDrop.dragoverEventListener(imagesContainer);
+  },
+  itemDragenterEventListener: (imagesContainer) => {
+    itemsDragAndDrop.dragenterEventListener(imagesContainer);
+  },
+  itemDropEventListener: (imagesContainer) => {
+    itemsDragAndDrop.dropEventListener(imagesContainer);
   },
 });
 renderElements.enableRenderForm();

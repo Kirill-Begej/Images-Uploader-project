@@ -1,0 +1,13 @@
+.uploader__images-item_dragging {
+  opacity: .6;
+}
+
+.uploader__images-item_dragging:where(
+  .uploader__images-name,
+  .uploader__images-format,
+  .uploader__images-size,
+  .uploader__images-pic, 
+  .uploader__images-delete-button
+  ) {
+  opacity: 0;
+}

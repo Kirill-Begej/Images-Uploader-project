@@ -41,6 +41,7 @@
 @import url('../blocks/footer/__container/footer__container.css');
 @import url('../blocks/uploader/__upload-window/_hide/uploader__upload-window_hide.css');
 @import url('../blocks/uploader/__images-list/_show/uploader__images-list_show.css');
+@import url('../blocks/uploader/__images-item/_dragging/uploader__images-item_dragging.css');
 @import url('../blocks/button/_type/button_type_image-delete.css');
 @import url('../blocks/button/_type/button_type_label.css');
 @import url('../blocks/button/_type/button_type_submit.css');

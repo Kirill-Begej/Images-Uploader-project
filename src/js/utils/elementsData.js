@@ -178,4 +178,7 @@ export const imagesPicData = {
 export const imagesItemData = {
   elementTag: 'li',
   elementClass: ['uploader__images-item'],
+  elementAttributes: {
+    draggable: true,
+  },
 };
