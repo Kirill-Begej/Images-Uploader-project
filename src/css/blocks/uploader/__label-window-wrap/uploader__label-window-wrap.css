@@ -1,0 +1,6 @@
+.uploader__label-window-wrap {
+  display: block;
+  inset: 0;
+  position: absolute;
+  z-index: 5;
+}

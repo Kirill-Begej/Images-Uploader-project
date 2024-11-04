@@ -5,6 +5,8 @@ export default class ItemsDragAndDrop {
       imagesListSelector,
       imagesItem,
       imagesNotDraggingSelector,
+      labelWindowWrapSelector,
+      labelWindowWrapDisplayNoneSelector,
     },
     {
       getFileState,
@@ -16,6 +18,8 @@ export default class ItemsDragAndDrop {
     this._imagesListSelector = imagesListSelector;
     this._imagesItem = imagesItem;
     this._imagesNotDraggingSelector = imagesNotDraggingSelector;
+    this._labelWindowWrapSelector = labelWindowWrapSelector;
+    this._labelWindowWrapDisplayNoneSelector = labelWindowWrapDisplayNoneSelector;
     this._getFileState = getFileState;
     this._renderItems = renderItems;
     this._setFilesState = setFilesState;
@@ -23,12 +27,16 @@ export default class ItemsDragAndDrop {
 
   dragEventListener(element) {
     element.addEventListener('dragstart', () => {
+      const labelWindowWrapElement = document.querySelector(this._labelWindowWrapSelector);
       setTimeout(() => {
         element.classList.add(this._draggingSelector);
+        labelWindowWrapElement.classList.add(this._labelWindowWrapDisplayNoneSelector);
       }, 0);
     });
     element.addEventListener('dragend', () => {
+      const labelWindowWrapElement = document.querySelector(this._labelWindowWrapSelector);
       element.classList.remove(this._draggingSelector);
+      labelWindowWrapElement.classList.remove(this._labelWindowWrapDisplayNoneSelector);
     });
   }
 

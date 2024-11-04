@@ -24,6 +24,7 @@
 @import url('../blocks/uploader/__form/uploader__form.css');
 @import url('../blocks/uploader/__window-container/uploader__window-container.css');
 @import url('../blocks/uploader/__label-window/uploader__label-window.css');
+@import url('../blocks/uploader/__label-window-wrap/uploader__label-window-wrap.css');
 @import url('../blocks/uploader/__upload-window/uploader__upload-window.css');
 @import url('../blocks/uploader/__upload-image/uploader__upload-image.css');
 @import url('../blocks/uploader/__upload-text/uploader__upload-text.css');
@@ -39,7 +40,10 @@
 @import url('../blocks/uploader/__buttons-container/uploader__buttons-container.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__container/footer__container.css');
+@import url('../blocks/uploader/__label-window-wrap/_active/uploader__label-window-wrap_active.css');
+@import url('../blocks/uploader/__label-window-wrap/_display/uploader__label-window-wrap_display_none.css');
 @import url('../blocks/uploader/__upload-window/_hide/uploader__upload-window_hide.css');
+@import url('../blocks/uploader/__label-window/_dragenter/uploader__label-window_dragenter.css');
 @import url('../blocks/uploader/__images-list/_show/uploader__images-list_show.css');
 @import url('../blocks/uploader/__images-item/_dragging/uploader__images-item_dragging.css');
 @import url('../blocks/button/_type/button_type_image-delete.css');

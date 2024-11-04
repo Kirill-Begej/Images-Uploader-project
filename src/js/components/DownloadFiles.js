@@ -26,7 +26,7 @@ export default class DownloadFiles {
     return this._filesState;
   }
 
-  #setDownloadFilesState(downloadFiles) {
+  setDownloadFilesState(downloadFiles) {
     Object.keys(downloadFiles).forEach((key) => {
       this._downloadFilesState.push({
         id: this._id,
@@ -41,9 +41,14 @@ export default class DownloadFiles {
     this._enableValidation(this._filesState, this._downloadFilesState);
   }
 
+  resetInput() {
+    this._input.value = '';
+    this._downloadFilesState = [];
+  }
+
   #changeInputHandler() {
     this._input.addEventListener('change', () => {
-      this.#setDownloadFilesState(this._input.files);
+      this.setDownloadFilesState(this._input.files);
       this._input.value = '';
       this._downloadFilesState = [];
     });

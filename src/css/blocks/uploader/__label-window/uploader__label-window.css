@@ -1,4 +1,5 @@
 .uploader__label-window {
+  align-items: start;
   background: var(--color-white);
   border-radius: 20px;
   box-sizing: border-box;
@@ -11,8 +12,4 @@
   position: relative;
   transition: box-shadow .3s ease-out;
   width: 750px;
-}
-
-.uploader__label-window:hover {
-  box-shadow: 0px 0px 6px 4px var(--color-light-gray);
 }

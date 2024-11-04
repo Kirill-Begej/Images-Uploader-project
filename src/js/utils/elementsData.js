@@ -39,6 +39,11 @@ export const labelWindowData = {
   elementClass: ['uploader__label-window'],
 };
 
+export const labelWindowWrapData = {
+  elementTag: 'div',
+  elementClass: ['uploader__label-window-wrap'],
+};
+
 export const inputData = {
   elementTag: 'input',
   elementClass: ['uploader__input'],

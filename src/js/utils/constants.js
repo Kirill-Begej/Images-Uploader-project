@@ -46,4 +46,12 @@ export const itemDnDConfig = {
   imagesListSelector: '.uploader__images-list',
   imagesItem: '.uploader__images-item',
   imagesNotDraggingSelector: '.uploader__images-item:not(.uploader__images-item_dragging)',
+  labelWindowWrapSelector: '.uploader__label-window-wrap',
+  labelWindowWrapDisplayNoneSelector: 'uploader__label-window-wrap_display_none',
+};
+
+export const fileDnDConfig = {
+  labelWindowSelector: '.uploader__label-window',
+  labelWindowDragenterSelector: 'uploader__label-window_dragenter',
+  labelWindowWrapActiveSelector: 'uploader__label-window-wrap_active',
 };

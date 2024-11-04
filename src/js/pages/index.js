@@ -5,6 +5,7 @@ import RenderElements from 'js/components/RenderElements';
 import ValidationFiles from 'js/components/ValidationFiles';
 import DownloadFiles from 'js/components/DownloadFiles';
 import ItemsDragAndDrop from 'js/components/ItemsDragAndDrop';
+import FileDragAndDrop from 'js/components/FileDragAndDrop';
 
 const api = new Api(constants.baseUrl);
 const itemsDragAndDrop = new ItemsDragAndDrop(constants.itemDnDConfig, {
@@ -14,6 +15,13 @@ const itemsDragAndDrop = new ItemsDragAndDrop(constants.itemDnDConfig, {
   },
   setFilesState: (filesState) => {
     downloadFiles.setFileState(filesState);
+  },
+});
+
+const fileDragAndDrop = new FileDragAndDrop(constants.fileDnDConfig, {
+  setFile: (files) => {
+    downloadFiles.setDownloadFilesState(files);
+    downloadFiles.resetInput();
   },
 });
 
@@ -63,6 +71,18 @@ const renderElements = new RenderElements(constants.formConfig, {
   },
   itemDropEventListener: (imagesContainer) => {
     itemsDragAndDrop.dropEventListener(imagesContainer);
+  },
+  fileDragenterEventListener: (filesContainer) => {
+    fileDragAndDrop.dragenterEventListener(filesContainer);
+  },
+  fileDragleaveEventListener: (filesContainer) => {
+    fileDragAndDrop.dragleaveEventListener(filesContainer);
+  },
+  fileDragoverEventListener: (filesContainer) => {
+    fileDragAndDrop.dragoverEventListener(filesContainer);
+  },
+  fileDropEventListener: (filesContainer) => {
+    fileDragAndDrop.dropEventListener(filesContainer);
   },
 });
 renderElements.enableRenderForm();

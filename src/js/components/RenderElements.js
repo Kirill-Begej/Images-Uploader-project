@@ -18,6 +18,10 @@ export default class RenderElements {
     itemDragoverEventListener,
     itemDragenterEventListener,
     itemDropEventListener,
+    fileDragenterEventListener,
+    fileDragleaveEventListener,
+    fileDragoverEventListener,
+    fileDropEventListener,
   }) {
     this._formContainerSelector = formContainerSelector;
     this._labelWindowSelector = labelWindowSelector;
@@ -33,6 +37,10 @@ export default class RenderElements {
     this._itemDragoverEventListener = itemDragoverEventListener;
     this._itemDragenterEventListener = itemDragenterEventListener;
     this._itemDropEventListener = itemDropEventListener;
+    this._fileDragenterEventListener = fileDragenterEventListener;
+    this._fileDragleaveEventListener = fileDragleaveEventListener;
+    this._fileDragoverEventListener = fileDragoverEventListener;
+    this._fileDropEventListener = fileDropEventListener;
   }
 
   enableRenderForm() {
@@ -143,9 +151,11 @@ export default class RenderElements {
   }
 
   #removeMessageAndRenderImagesItems(messageContainerElement, renderItems) {
+    this._prohibitionMovement = false;
     messageContainerElement.addEventListener('animationend', () => {
       messageContainerElement.remove();
       this.#renderImagesItems(renderItems);
+      this._prohibitionMovement = true;
     });
   }
 
@@ -164,12 +174,19 @@ export default class RenderElements {
     uploadWindowElement.append(svgElement, uploadTextElement);
     const imageListElement = ElementsFactory.getBlockElement(elementsData.imagesListData);
     const inputElement = ElementsFactory.getBlockElement(elementsData.inputData);
+    const labelWindowWrapElement = ElementsFactory.getBlockElement(
+      elementsData.labelWindowWrapData,
+    );
+    this._fileDragenterEventListener(labelWindowWrapElement);
+    this._fileDragleaveEventListener(labelWindowWrapElement);
+    this._fileDragoverEventListener(labelWindowWrapElement);
+    this._fileDropEventListener(labelWindowWrapElement);
     const labelWindowElement = ElementsFactory.getBlockElement(elementsData.labelWindowData);
-    // labelWindowElement.addEventListener('click', (e) => {
-    //   e.stopPropagation();
-    //   inputElement.click();
-    // });
-    labelWindowElement.append(uploadWindowElement, imageListElement);
+    labelWindowElement.addEventListener('click', (e) => {
+      e.stopPropagation();
+      inputElement.click();
+    });
+    labelWindowElement.append(labelWindowWrapElement, uploadWindowElement, imageListElement);
     const spanElement = ElementsFactory.getBlockElement(elementsData.textData);
     const windowContainerElement = ElementsFactory.getBlockElement(
       elementsData.windowContainerData,
