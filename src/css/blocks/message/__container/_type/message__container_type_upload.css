@@ -1,0 +1,8 @@
+.message__container_type_upload {
+  box-shadow: 0px 0px 0px 1.5px var(--color-sky);
+  color: var(--color-sky);
+}
+
+.message__container_type_upload .message__progress-bar-line {
+  background: var(--color-sky);
+}

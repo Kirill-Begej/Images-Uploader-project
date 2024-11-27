@@ -1,0 +1,5 @@
+.uploader__images-size {
+  flex: 0 1 15.14%;
+  font-size: var(--font-size-s);
+  text-align: center;
+}

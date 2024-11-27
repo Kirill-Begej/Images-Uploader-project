@@ -1,0 +1,4 @@
+.uploader__upload-text {
+  color: var(--color-mint);
+  font: var(--font-size-l) var(--secondary-font-medium);
+}

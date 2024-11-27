@@ -1,0 +1,8 @@
+.button_type_image-delete {
+  fill: var(--color-black);
+  padding: 0;
+}
+
+.button_type_image-delete:hover .button__delete-image {
+  fill: var(--color-red);
+}

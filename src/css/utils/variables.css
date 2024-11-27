@@ -1,0 +1,20 @@
+:root {
+  --primary-font: 'NotoSerif-Medium', 'Times New Roman', serif;
+  --secondary-font-regular: 'Ubuntu-Regular', 'Arial', sans-serif;
+  --secondary-font-medium: 'Ubuntu-Medium', 'Arial', sans-serif;
+  --font-size-xs: 14px;
+  --font-size-s: 18px;
+  --font-size-m: 22px;
+  --font-size-l: 28px;
+  --font-size-xl: 46px;
+  --font-line-heigth-s: 1.2;
+  --color-black: #131313;
+  --color-dark-gray: #3c3c3c;
+  --color-gray: #AEAEAE;
+  --color-light-gray: #D9D9D8;
+  --color-mint: #57BCAA;
+  --color-pink: #DA3369;
+  --color-red: #e02d00;
+  --color-sky: #5FA5FD;
+  --color-white: #F2F2F2;
+}

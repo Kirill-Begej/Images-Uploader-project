@@ -1,0 +1,7 @@
+.uploader__title {
+  color: var(--color-white);
+  font: var(--font-size-xl) var(--primary-font);
+  margin: 0;
+  max-width: 640px;
+  text-align: center;
+}

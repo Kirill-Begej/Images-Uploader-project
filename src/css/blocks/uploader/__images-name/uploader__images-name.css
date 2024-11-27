@@ -1,0 +1,6 @@
+.uploader__images-name {
+  flex: 0 1 55.42%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

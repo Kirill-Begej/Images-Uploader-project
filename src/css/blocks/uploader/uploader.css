@@ -1,0 +1,11 @@
+.uploader {
+  align-items: center;
+  color: var(--color-gray);
+  display: flex;
+  flex-direction: column;
+  font: var(--font-size-m) var(--secondary-font-regular);
+  gap: 30px;
+  justify-content: center;
+  line-height: var(--font-line-heigth-s);
+  width: 95%;
+}

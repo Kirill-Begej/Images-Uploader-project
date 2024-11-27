@@ -1,0 +1,6 @@
+.uploader__buttons-container {
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  width: 650px;
+}

@@ -1,0 +1,8 @@
+.uploader__images-pic {
+  flex: 0 1 12.85%;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  width: 90px;
+}

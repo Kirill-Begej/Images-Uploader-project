@@ -1,0 +1,11 @@
+.message__list {
+  color: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  font: var(--font-size-xs) var(--secondary-font-regular);
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}

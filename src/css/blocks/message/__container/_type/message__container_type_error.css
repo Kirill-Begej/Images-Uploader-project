@@ -1,0 +1,8 @@
+.message__container_type_error {
+  box-shadow: 0px 0px 0px 1.5px var(--color-red);
+  color: var(--color-red);
+}
+
+.message__container_type_error .message__progress-bar-line {
+  background: var(--color-red);
+}

@@ -1,0 +1,43 @@
+@keyframes messageActive {
+  0% {
+    right: 0px;
+  }
+  3% {
+    right: 375px;
+  }
+  4% {
+    right: 355px;
+  }
+  5% {
+    right: 370px;
+  }
+  6% {
+    right: 360px;
+  }
+  7% {
+    right: 365px;
+  }
+  90% {
+    right: 365px;
+  }
+  95% {
+    right: 0px;
+  }
+}
+
+@keyframes processBarActive {
+  from {
+    right: 100%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+.message__container_active {
+  animation: messageActive 5s linear forwards;
+}
+
+.message__container_active .message__progress-bar-line {
+  animation: processBarActive 4.5s linear forwards .35s;
+}
